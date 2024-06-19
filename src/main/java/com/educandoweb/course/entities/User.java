@@ -10,6 +10,7 @@ import java.util.Objects;
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -21,8 +22,7 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(long id, String name, String email, String phone, String password) {
-        this.id = id;
+    public User(String name, String email, String phone, String password) {
         this.name = name;
         this.email = email;
         this.phone = phone;
