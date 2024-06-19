@@ -1,7 +1,10 @@
 package com.educandoweb.course.resources;
 
+import com.educandoweb.course.entities.Order;
 import com.educandoweb.course.entities.User;
+import com.educandoweb.course.service.OrderService;
 import com.educandoweb.course.service.UserService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +17,10 @@ import java.util.Optional;
 public class UserResource {
     @Autowired
     UserService service;
+
+    @Autowired
+    OrderService orderService;
+
     @GetMapping("/returnAll")
     public ResponseEntity<List<User>> findAll() {
         var list = service.findAll();
