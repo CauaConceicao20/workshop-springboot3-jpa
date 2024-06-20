@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@Entity(name= "Product")
+@Entity
 @Table(name= "tb_product")
 public class Product implements Serializable {
 
@@ -25,6 +25,9 @@ public class Product implements Serializable {
     @ManyToMany
     @JoinTable(name= "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
+
+    @OneToMany(mappedBy = "id.product")
+    private Set<OrderItem> items = new HashSet<>();
 
     public Product() {
 
@@ -77,9 +80,18 @@ public class Product implements Serializable {
         this.imgUrl = imgUrl;
     }
 
-    @JsonIgnore
+
     public Set<Category> getCategories() {
         return categories;
+    }
+
+    @JsonIgnore
+    public Set<Order> getOrders() {
+        Set<Order> orders = new HashSet<>();
+        for(OrderItem order : items) {
+            orders.add(order.getOrder());
+        }
+        return orders;
     }
 
     @Override

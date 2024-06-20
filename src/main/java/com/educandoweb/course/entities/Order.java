@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@Entity(name = "Order")
+@Entity
 @Table(name = "tb_order")
 public class Order implements Serializable {
 
@@ -25,7 +25,7 @@ public class Order implements Serializable {
     private Integer orderStatus;
 
     @ManyToOne
-    @JoinColumn(name = "clientId")
+    @JoinColumn(name = "client_id")
     private User client;
 
     @OneToMany(mappedBy = "id.order")
