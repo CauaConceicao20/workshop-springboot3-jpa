@@ -48,7 +48,7 @@ public class UserService {
             updateData(entity, obj);
             return repository.save(entity);
         } catch (EntityNotFoundException e) {
-            throw new ResourceNotFoundException(String.valueOf(id));
+            throw new ResourceNotFoundExcpetion(id);
         }
     }
 
